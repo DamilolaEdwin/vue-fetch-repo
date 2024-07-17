@@ -1,43 +1,71 @@
 <script setup>
-import {reactive, onMounted} from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { reactive, onMounted } from 'vue';
+import { RouterLink } from 'vue-router';
 
 const state = reactive({
-    userData: null,
-    repos: [],
-    currentPage: 1,
-    perPage: 4,
-    totalPages: 1
+  userData: null,
+  repos: [],
+  currentPage: 1,
+  perPage: 4,
+  totalPages: 1
 });
 
 const fetchUserData = () => {
-    fetch(`https://api.github.com/users/DamilolaEdwin`)
-        .then((res) => res.json())
-        .then((data) => {
-            state.userData = data;
-        });
+  fetch(`https://api.github.com/users/DamilolaEdwin`)
+    .then(res => res.json())
+    .then(data => {
+      state.userData = data;
+    });
 };
 
-// import HelloWorld from './components/HelloWorld.vue'
+const fetchRepos = () => {
+  fetch(`https://api.github.com/users/DamilolaEdwin/repos?per_page=${state.perPage}&page=${state.currentPage}`)
+    .then(res => {
+      const linkHeader = res.headers.get('Link');
+      if (linkHeader) {
+        const links = linkHeader.split(',').reduce((acc, link) => {
+          const match = link.match(/<(.*)>; rel="(.*)"/);
+          acc[match[2]] = match[1];
+          return acc;
+        }, {});
+
+        state.totalPages = links.last ? new URL(links.last).searchParams.get('page') : state.currentPage;
+      } else {
+        state.totalPages = state.currentPage;
+      }
+      return res.json();
+    })
+    .then(data => {
+      state.repos = data;
+    });
+};
+
+const goToPage = (page) => {
+  state.currentPage = page;
+  fetchRepos();
+};
+
+onMounted(() => {
+  fetchUserData();
+  fetchRepos();
+});
 </script>
 
 <template>
   <header>
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+      <h2>{{ state.userData ? state.userData.name : 'Loading...' }}</h2>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-       
       </nav>
     </div>
   </header>
-
-  <RouterView />
+  <div>
+    <RouterView />
+  </div>
 </template>
+
 
 <style scoped>
 header {
