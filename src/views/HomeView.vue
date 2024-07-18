@@ -52,13 +52,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="page">
     <h3>Repositories</h3>
-    <ul>
-      <li v-for="repo in state.repos" :key="repo.id">
+    <div class="">
+      <div class="box" v-for="repo in state.repos" :key="repo.id">
         <RouterLink :to="`/repos/${state.userData.login}/${repo.name}`">{{ repo.name }}</RouterLink>
-      </li>
-    </ul>
+      </div>
+    </div>
     <div class="pagination">
       <button :disabled="state.currentPage === 1" @click="goToPage(state.currentPage - 1)">Previous</button>
       <span>Page {{ state.currentPage }} of {{ state.totalPages }}</span>
@@ -66,3 +66,20 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+
+.page{
+  text-align: center;
+}
+
+.box{
+  width: 150px;
+  height: 150px;
+  border: solid 2px red; 
+  padding: 10px;
+  margin:20px;
+  text-align: center;
+
+}
+</style>

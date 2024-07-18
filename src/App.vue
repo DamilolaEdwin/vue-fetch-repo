@@ -54,10 +54,11 @@ onMounted(() => {
 <template>
   <header>
     <div class="wrapper">
-      <h2>{{ state.userData ? state.userData.name : 'Loading...' }}</h2>
+      <h1>{{ state.userData ? state.userData.name : 'Loading...' }}</h1>
+      <h2>{{ state.userData ? state.userData.login : "N/A" }}</h2>
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <!-- <RouterLink to="/">Home</RouterLink> -->
+        <!-- <RouterLink to="/about">About</RouterLink> -->
       </nav>
     </div>
   </header>
@@ -68,15 +69,15 @@ onMounted(() => {
 
 
 <style scoped>
+
+h1, h2{
+  text-align: center;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
 nav {
   width: 100%;
@@ -129,4 +130,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+</style> 
