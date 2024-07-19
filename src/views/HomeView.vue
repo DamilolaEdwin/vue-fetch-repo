@@ -53,10 +53,10 @@ onMounted(() => {
 
 <template>
   <div class="page">
-    <h3>Repositories</h3>
     <div class="">
       <div class="box" v-for="repo in state.repos" :key="repo.id">
-        <RouterLink :to="`/repos/${state.userData.login}/${repo.name}`">{{ repo.name }}</RouterLink>
+        <h2><RouterLink :to="`/repos/${state.userData.login}/${repo.name}`">{{ repo.name }}</RouterLink></h2>
+        <p>Description: {{ repo.description }}</p>
       </div>
     </div>
     <div class="pagination">
@@ -69,17 +69,35 @@ onMounted(() => {
 
 <style scoped>
 
-.page{
-  text-align: center;
+
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .box{
-  width: 150px;
-  height: 150px;
-  border: solid 2px red; 
+  width: 300px;
+  height: 300px;
+  border: solid 1px #fff; 
   padding: 10px;
   margin:20px;
   text-align: center;
-
+  margin-inline-start: 150px;
+  font-size: 200;
+  
+  background-color: #FFFFFF; 
+  border: 1px solid #D3D3D3; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 8px; /* Rounded corners */
+  padding: 1rem;
+  transition: transform 0.2s;
 }
+
+.box:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
 </style>
