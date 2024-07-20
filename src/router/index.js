@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import RepoDetails from '../components/RepoDetails.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+
 
 const routes = [
   {
@@ -11,19 +11,19 @@ const routes = [
   {
     path: '/repos/:username/:repo',
     name: 'RepoDetails',
-    component: RepoDetails
+    component: () => import ('../components/RepoDetails.vue')
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
+    path: '/:catchAll(.*)',
+    name: 'not-found',
+    component: () => import ('../views/NotFoundView.vue')
   }
-];
+  
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
-});
+})
 
-export default router;
-
+export default router

@@ -52,63 +52,56 @@ onMounted(() => {
 </script>
 
 <template>
- <div class="total">
-  <header>
-    <div class="wrapper">
-      <h1>{{ state.userData ? state.userData.name : 'Loading...' }}</h1>
-      <h2>GitHub Repositories</h2>
-      <nav>
-        <!-- <RouterLink to="/">Home</RouterLink> -->
-        <!-- <RouterLink to="/about">About</RouterLink> -->
-      </nav>
+  <div class="total">
+    <header>
+      <div class="wrapper">
+        <h1>{{ state.userData ? state.userData.name : 'Loading...' }}</h1>
+        <h2>GitHub Repositories</h2>
+       
+          <!-- <RouterLink to="/">Home</RouterLink> -->
+          
+       
+      </div>
+    </header>
+    <div>
+      <RouterView />
     </div>
-  </header>
-  <div>
-    <RouterView />
   </div>
- </div>
 </template>
 
 
-<style >
-body{
+<style>
+body {
   background-color: #87CEEB;
-  color:  #333333;
+  color: #333333;
 
 }
 
-h1, h2{
+h1,
+h2 {
   text-align: center;
-  color: #FFFFFF;
-}
-/* header {
-  line-height: 1.5;
-  max-height: 100vh;
+  color: #080000;
 }
 
+a {
+  color: #FF7F50;
+  text-decoration: none;
+  font-weight: bold;
+}
 
+a:hover {
+  text-decoration: underline;
+}
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+@media (max-width: 768px) {
+  .box {
+    width: calc(100% / 2 - 2rem);
   }
+}
 
-  
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+@media (max-width: 480px) {
+  .box {
+    width: 100%;
   }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-} */
-</style> 
+}
+</style>

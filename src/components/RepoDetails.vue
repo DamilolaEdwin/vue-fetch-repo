@@ -8,6 +8,7 @@ const repo = reactive({
   stargazers_count: 0,
   forks_count: 0,
   followers: 0,
+  following: 0,
   html_url: ''
 });
 
@@ -28,10 +29,12 @@ onMounted(() => {
     <p>Description: {{ repo.description }}</p>
     <p>Stars: {{ repo.stargazers_count }}</p>
     <p>Forks: {{ repo.forks_count }}</p>
-    <p>Followers: {{repo.followers}}</p>
+    <p>Followers: {{ repo.followers }}</p>
+    <p></p>
     <a :href="repo.html_url" target="_blank">View on GitHub</a>
 
   </div>
   <br />
-  <p>Click here to go back<RouterLink to="/">Home</RouterLink></p>
+  <p>Click here to go back<RouterLink to="/">Home</RouterLink>
+  </p>
 </template>

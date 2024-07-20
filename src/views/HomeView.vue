@@ -55,7 +55,9 @@ onMounted(() => {
   <div class="page">
     <div class="">
       <div class="box" v-for="repo in state.repos" :key="repo.id">
-        <h2><RouterLink :to="`/repos/${state.userData.login}/${repo.name}`">{{ repo.name }}</RouterLink></h2>
+        <h2>
+          <RouterLink :to="`/repos/${state.userData.login}/${repo.name}`">{{ repo.name }}</RouterLink>
+        </h2>
         <p>Description: {{ repo.description }}</p>
       </div>
     </div>
@@ -68,8 +70,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
-
 .page {
   display: flex;
   flex-wrap: wrap;
@@ -78,26 +78,30 @@ onMounted(() => {
   padding: 1rem;
 }
 
-.box{
+.box {
   width: 300px;
   height: 300px;
-  border: solid 1px #fff; 
+  border: solid 1px #fff;
   padding: 10px;
-  margin:20px;
+  margin: 20px;
   text-align: center;
   margin-inline-start: 150px;
   font-size: 200;
-  
-  background-color: #FFFFFF; 
-  border: 1px solid #D3D3D3; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  border-radius: 8px; /* Rounded corners */
+
+  background-color: #FFFFFF;
+  border: 1px solid #D3D3D3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   padding: 1rem;
   transition: transform 0.2s;
 }
 
 .box:hover {
-  transform: translateY(-5px); /* Slight lift on hover */
+  transform: translateY(-5px);
 }
 
+p {
+  color: #87CEEB;
+  margin-bottom: 1rem;
+}
 </style>
